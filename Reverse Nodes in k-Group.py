@@ -5,7 +5,8 @@
 #         self.next = next
 class Solution:
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        node = ListNode(0)
+        dummy = node = ListNode(0)
+        dummy.next = head
         curr = point = head
         index = 0
         
@@ -16,17 +17,22 @@ class Solution:
                 count += 1
                 
             if count == k:
-                prev = None
+                # prev = None
+                prev, t = point, curr
                 for _ in range(k):
-                    tmp = curr.next
-                    curr.next = prev
-                    prev = curr
+                    tmp = t.next
+                    t.next = prev
+                    prev = t
                     
-                    curr = tmp
+                    t = tmp
                 
                 node.next = prev
                 print(node)
+                node = curr
+                print(node)
+                curr = point
+                print(node)
             else:
-                return node.next
+                return dummy.next
                 
         
