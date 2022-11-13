@@ -12,12 +12,11 @@ class Solution:
         
         while True:
             count = 0
-            while point and count < k:   # use r to locate the range
+            while point and count < k:
                 point = point.next
                 count += 1
                 
             if count == k:
-                # prev = None
                 prev, t = point, curr
                 for _ in range(k):
                     tmp = t.next
@@ -27,11 +26,8 @@ class Solution:
                     t = tmp
                 
                 node.next = prev
-                print(node)
                 node = curr
-                print(node)
                 curr = point
-                print(node)
             else:
                 return dummy.next
                 
